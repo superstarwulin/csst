@@ -1,0 +1,93 @@
+/*transition-property用来声明transition会被应用到的属性*/
+
+#container p.one {
+    transition-property: color;
+}
+#container p.two {
+    transition-property: width;
+}
+#container p.three {
+    transition-property: color, width;
+}
+
+
+/*transition-duration用来声明动画持续的时长，可以是s也可以是ms*/
+
+#container p.one {
+    transition-duration: 3s;
+}
+#container p.two {
+    transition-duration: 3000ms;
+}
+
+/*transition-timing-function声明了动画的缓动类型，有下面几个选项：
+
+transition-timing-function声明了动画的缓动类型，有下面几个选项：
+
+ease：默认项，动画效果慢慢开始然后加速，到中点后再减速最后缓慢到达终点
+ease-in-out：与ease类似，加减速更柔和一些
+ease-in：开始比较慢，但是加速和停止曲线比较陡峭
+ease-out：开始较快，然后缓慢停止
+linear：线性平均速率，通常在color和opacity属性的变化上
+
+*/
+
+/*
+transition-delay声明了动画延迟开始的时间，很容易理解
+*/
+
+#container p.one {
+    transition-delay: 0.5s;
+}
+#container p.two {
+    transition-delay: 500ms;
+}
+
+/*
+简写
+*/
+
+#container p {
+    transition-property: all;
+    transition-duration: 3s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0.5s;
+}
+#element {
+    /* starting state styles */
+    color: #F00;
+    -webkit-transition: all 3s ease-in-out 0.5s;
+    transition: all 3s ease-in-out 0.5s;
+}
+#element:hover {
+    /* ending state styles */
+    color: #00F;
+}
+
+/*多个transition*/
+
+p#animate {
+    width: 10em;
+    background-color: #F00;
+    border-radius: 5px;
+    transition-property: width, border-radius, background-color;
+    transition-duration: 1s, 2s;
+    transition-timing-function:  ease, ease-out, linear;
+}
+p#animate:hover {
+    width: 20em;
+    background-color: #00F;
+    border-radius: 50%;
+}
+/*demo*/
+#transition1 {
+    width:350px;
+    background-color:#1abc9c;
+    transition-propety:width,background-color;
+    transition-duration:.5s, 1s;
+}
+#transition1:hover {
+    width:450px;
+    background-color:#8e44ad;
+    transition-duration:.5s, 3s;
+}

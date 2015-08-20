@@ -1,0 +1,121 @@
+/*
+translate3d(tx,ty,tz)：他定义了一个3D的位移方法，增加了z轴的偏移量
+translateZ(tz)：这个方法只在Z轴偏移，与translateX()和translateY()相似
+scale3d(sx,sy,sz)：在原有的scale方法上增加了z轴的参数
+scaleZ(sz)：同理，只放大z轴，与scaleX()和scaleY()类似
+rotate3d(rx,ry,rz)：将元素以给定参数的某一个轴方向旋转
+rotateX(angle)，rotateY(angle)和rotateZ(angle)：只按照某一个轴旋转，rotate3d(1,0,0,30deg)相当于rotateX(30deg)，其他类推。
+
+*/
+.transform-con {
+  width: 250px;
+  height: 250px;
+  border: 1px solid #cccccc;
+  margin: 60px auto;
+  position: relative;
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+  -o-perspective: 600px;
+  perspective: 600px;
+}
+.transform-con .inner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0.7;
+  color: #ffffff;
+  background: #ff0000;
+  font-size: 18px;
+  line-height: 22px;
+  -webkit-transition: all ease 0.4s;
+  -moz-transition: all ease 0.4s;
+  transition: all ease 0.4s;
+}
+#trans-3:hover {
+  -webkit-transform: translateZ(-200px);
+  -moz-transform: translateZ(-200px);
+  -o-transform: translateZ(-200px);
+  transform: translateZ(-200px);
+}
+#trans-31:hover {
+  -webkit-transform: translateZ(100px);
+  -moz-transform: translateZ(100px);
+  -o-transform: translateZ(100px);
+  transform: translateZ(100px);
+}
+#rotate-32:hover {
+  -webkit-transform: rotateX(45deg);
+  -moz-transform: rotateX(45deg);
+  -o-transform: rotateX(45deg);
+  transform: rotateX(45deg);
+}
+#rotate-33:hover {
+  -webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+/*这两种不同写法，当应用元素只有一个时候，并没有区别，当有多个元素的时候，我们看看效果：*/
+.pers-con {
+  width: 350px;
+  height: 350px;
+  border: 1px solid #cccccc;
+  margin: 40px auto 40px;
+  overflow: hidden;
+}
+.pers-con .item {
+  width: 95px;
+  height: 95px;
+  float: left;
+  margin: 8px;
+}
+#pers-red .item {
+  background: red;
+  transform: perspective(400px) rotateY(45deg);
+}
+/*上面这两种写法，都触发了元素的3D行为，
+函数型的写法transform:perspective(400px)
+适用于单个元素，
+会对每一个元素做3D视图的变换，
+而perspective:400px的写法，
+需写在父元素上，然后以父元素的视角，对多个子元素进行3D变换，
+多个子元素共享同一个3D空间，可以自己打开console修改感受一下。*/
+#pers-blue {
+  perspective: 400px;
+}
+#pers-blue .item {
+  background: blue;
+  transform: rotateY(45deg);
+}
+/*perspective-orgin
+
+通常，对一个元素进行3D变换的时候，变换点都是元素的中心点，如果你想以其他的位置为变换点，那就可以用这个属性来做调整：*/
+#transform1 {
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  margin: 20px auto 80px;
+}
+#transform1 .inner {
+  -webkit-transform: rotateY(40deg);
+  -moz-transform: rotateY(40deg);
+  transform: rotateY(40deg);
+  -webkit-transition: all ease .3s;
+  -moz-transition: all ease .3s;
+  transition: all ease .3s;
+  text-align: center;
+}
+.entry img {
+  max-width: 670px;
+  display: block;
+  margin: 10px auto;
+}
+#transform1 img {
+  display: inline;
+  margin-right: 10px;
+}
+/*
+backface-visibility
+
+backface-visibility 属性可用于隐藏内容的背面。默认情况下，背面可见，这意味着即使在翻转后，变换的内容仍然可见。但当 backface-visibility 设置为 hidden 时，旋转后内容将隐藏，因为旋转后正面将不再可见。该功能可帮助你模拟多面的对象，例如下例中使用的卡片。通过将 backface-visibility 设置为 hidden，可以确保只有正面可见。
+*/
